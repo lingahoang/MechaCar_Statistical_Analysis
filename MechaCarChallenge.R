@@ -14,10 +14,10 @@ mechacar_table <- read.csv (file='MechaCar_mpg.csv',check.names=F,stringsAsFacto
 head(mechacar_table)
 
 # Generate multiple linear regression model
-lm(mpg ~ vehicle_length + vehicle_weight +  spoiler_angle + ground_clearance,mechacar_table)
+lm(mpg ~ vehicle_length + vehicle_weight +  spoiler_angle + ground_clearance + AWD,mechacar_table)
 
 # Generate summary statistics
-summary(lm(mpg ~ vehicle_length + vehicle_weight +  spoiler_angle + ground_clearance,mechacar_table))
+summary(lm(mpg ~ vehicle_length + vehicle_weight +  spoiler_angle + ground_clearance + AWD,mechacar_table))
 
 
 # Deliverable 2: Create Visualizations for the Trip Analysis
@@ -49,23 +49,26 @@ lot_summary <- summarize(group_by(suspensioncoil_table, Manufacturing_Lot),
 # View lot summary table
 head(lot_summary)
 
-head(suspensioncoil_table)
+# boxplot for visualization
+plt1 <- ggplot(suspensioncoil_table,aes(x=Manufacturing_Lot,y=PSI))
+plt1 + geom_boxplot()
 
-
-# Deliverable 3:
+# Deliverable 3: T-Tests on Suspension Coils
 ?t.test()
 # T-test compares all manufacturing lots against mean PSI of the population
 t.test(suspensioncoil_table$PSI, mu=1500)
 
 
 # Three T-tests compare each manufacturing lot against mean PSI of the population
-
+# lot1 t.test
 lot1 <- subset(suspensioncoil_table, Manufacturing_Lot == "Lot1")
 t.test(lot1$PSI, mu=1500)
 
+# lot2 t.test
 lot2 <- subset(suspensioncoil_table, Manufacturing_Lot == "Lot2")
 t.test(lot2$PSI, mu=1500)
 
+#lot3 t.test
 lot3 <- subset(suspensioncoil_table, Manufacturing_Lot == "Lot3")
 t.test(lot1$PSI, mu=1500)
 
