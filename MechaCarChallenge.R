@@ -36,7 +36,7 @@ total_summary <- summarize(suspensioncoil_table,
                            SD = sd(PSI)
 )
 # View total summary table
-head(total_summary)
+view(total_summary)
 
 
 # Create a lot summary
@@ -47,7 +47,7 @@ lot_summary <- summarize(group_by(suspensioncoil_table, Manufacturing_Lot),
                            SD = sd(PSI)
 )
 # View lot summary table
-head(lot_summary)
+view(lot_summary)
 
 # boxplot for visualization
 plt1 <- ggplot(suspensioncoil_table,aes(x=Manufacturing_Lot,y=PSI))
@@ -57,7 +57,6 @@ plt1 + geom_boxplot()
 ?t.test()
 # T-test compares all manufacturing lots against mean PSI of the population
 t.test(suspensioncoil_table$PSI, mu=1500)
-
 
 # Three T-tests compare each manufacturing lot against mean PSI of the population
 # lot1 t.test
@@ -70,7 +69,7 @@ t.test(lot2$PSI, mu=1500)
 
 #lot3 t.test
 lot3 <- subset(suspensioncoil_table, Manufacturing_Lot == "Lot3")
-t.test(lot1$PSI, mu=1500)
+t.test(lot3$PSI, mu=1500)
 
 
 # Deliverable 4: 
